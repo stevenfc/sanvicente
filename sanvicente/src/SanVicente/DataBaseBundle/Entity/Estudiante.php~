@@ -1,0 +1,125 @@
+<?php
+
+namespace SanVicente\DataBaseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Estudiante
+ *
+ * @ORM\Table(name="estudiante", indexes={@ORM\Index(name="fk_Estudiante_Grupo_idx", columns={"Grupo_id"}), @ORM\Index(name="fk_Estudiante_Rol1_idx", columns={"Rol_id"})})
+ * @ORM\Entity
+ */
+class Estudiante
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="carne", type="string", length=45, nullable=false)
+     */
+    private $carne;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="grado", type="string", length=45, nullable=false)
+     */
+    private $grado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=55, nullable=false)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cedula", type="string", length=45, nullable=false)
+     */
+    private $cedula;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="correo", type="string", length=45, nullable=true)
+     */
+    private $correo;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_nacimiento", type="date", nullable=false)
+     */
+    private $fechaNacimiento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion", type="string", length=45, nullable=false)
+     */
+    private $direccion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefono", type="string", length=45, nullable=true)
+     */
+    private $telefono;
+
+    /**
+     * @var \Grupo
+     *
+     * @ORM\ManyToOne(targetEntity="Grupo")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Grupo_id", referencedColumnName="id")
+     * })
+     */
+    private $grupo;
+
+    /**
+     * @var \Rol
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Rol")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Rol_id", referencedColumnName="id")
+     * })
+     */
+    private $rol;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Curso", inversedBy="estudiante")
+     * @ORM\JoinTable(name="curso_estudiante",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="Estudiante_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="Curso_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $curso;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->curso = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

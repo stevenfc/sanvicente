@@ -1,0 +1,56 @@
+<?php
+
+namespace SanVicente\DataBaseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * MaterialDidactico
+ *
+ * @ORM\Table(name="material_didactico", indexes={@ORM\Index(name="fk_Material_didactico_Profesor1_idx", columns={"Profesor_id"})})
+ * @ORM\Entity
+ */
+class MaterialDidactico
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=45, nullable=true)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ruta", type="string", length=100, nullable=false)
+     */
+    private $ruta;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="string", length=45, nullable=true)
+     */
+    private $descripcion;
+
+    /**
+     * @var \Profesor
+     *
+     * @ORM\ManyToOne(targetEntity="Profesor")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Profesor_id", referencedColumnName="id")
+     * })
+     */
+    private $profesor;
+
+
+}

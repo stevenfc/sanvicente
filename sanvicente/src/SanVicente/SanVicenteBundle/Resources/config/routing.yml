@@ -1,0 +1,3 @@
+san_vicente_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: SanVicenteBundle:Default:index }

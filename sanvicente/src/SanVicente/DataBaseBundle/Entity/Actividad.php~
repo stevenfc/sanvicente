@@ -1,0 +1,67 @@
+<?php
+
+namespace SanVicente\DataBaseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Actividad
+ *
+ * @ORM\Table(name="actividad")
+ * @ORM\Entity
+ */
+class Actividad
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=45, nullable=true)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="string", length=100, nullable=true)
+     */
+    private $descripcion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lugar", type="string", length=45, nullable=true)
+     */
+    private $lugar;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha", type="date", nullable=true)
+     */
+    private $fecha;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Profesor", mappedBy="actividadactividad")
+     */
+    private $profesor;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->profesor = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

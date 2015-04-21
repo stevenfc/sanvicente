@@ -1,0 +1,9 @@
+db:
+    resource: "@DBBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+san_vicente:
+    resource: "@SanVicenteBundle/Resources/config/routing.yml"
+    prefix:   /
+

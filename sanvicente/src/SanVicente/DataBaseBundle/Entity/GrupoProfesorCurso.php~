@@ -1,0 +1,55 @@
+<?php
+
+namespace SanVicente\DataBaseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GrupoProfesorCurso
+ *
+ * @ORM\Table(name="grupo_profesor_curso", indexes={@ORM\Index(name="fk_Grupo_Profesor_Curso_Grupo1_idx", columns={"Grupo_id"}), @ORM\Index(name="fk_Grupo_Profesor_Curso_Curso1_idx", columns={"Curso_id"}), @ORM\Index(name="fk_Grupo_Profesor_Curso_Profesor1_idx", columns={"Profesor_id"})})
+ * @ORM\Entity
+ */
+class GrupoProfesorCurso
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Grupo
+     *
+     * @ORM\ManyToOne(targetEntity="Grupo")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Grupo_id", referencedColumnName="id")
+     * })
+     */
+    private $grupo;
+
+    /**
+     * @var \Curso
+     *
+     * @ORM\ManyToOne(targetEntity="Curso")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Curso_id", referencedColumnName="id")
+     * })
+     */
+    private $curso;
+
+    /**
+     * @var \Profesor
+     *
+     * @ORM\ManyToOne(targetEntity="Profesor")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Profesor_id", referencedColumnName="id")
+     * })
+     */
+    private $profesor;
+
+
+}

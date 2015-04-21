@@ -1,0 +1,32 @@
+<?php
+
+namespace SanVicente\DataBaseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Grupo
+ *
+ * @ORM\Table(name="grupo")
+ * @ORM\Entity
+ */
+class Grupo
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="seccion", type="string", length=10, nullable=true)
+     */
+    private $seccion;
+
+
+}

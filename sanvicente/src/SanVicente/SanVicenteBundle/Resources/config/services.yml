@@ -1,0 +1,7 @@
+parameters:
+#    san_vicente.example.class: SanVicente\SanVicenteBundle\Example
+
+services:
+#    san_vicente.example:
+#        class: %san_vicente.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
